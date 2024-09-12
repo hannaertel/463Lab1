@@ -2,14 +2,15 @@
 triple:          'arm64-apple-darwin'
 binary-path:     http_client
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _extractName, symObjAddr: 0x0, symBinAddr: 0x1000039D8, symSize: 0xA8 }
-  - { offsetInCU: 0xEE, offset: 0xEE, size: 0x8, addend: 0x0, symName: _extractName, symObjAddr: 0x0, symBinAddr: 0x1000039D8, symSize: 0xA8 }
-  - { offsetInCU: 0x176, offset: 0x176, size: 0x8, addend: 0x0, symName: _open_TCP, symObjAddr: 0xA8, symBinAddr: 0x100003A80, symSize: 0x234 }
-  - { offsetInCU: 0x6F6, offset: 0x6F6, size: 0x8, addend: 0x0, symName: _open_TCP.cold.1, symObjAddr: 0x32C, symBinAddr: 0x100003D0C, symSize: 0x24 }
-  - { offsetInCU: 0x70D, offset: 0x70D, size: 0x8, addend: 0x0, symName: _open_TCP.cold.2, symObjAddr: 0x350, symBinAddr: 0x100003D30, symSize: 0x24 }
-  - { offsetInCU: 0x724, offset: 0x724, size: 0x8, addend: 0x0, symName: _open_TCP.cold.3, symObjAddr: 0x374, symBinAddr: 0x100003D54, symSize: 0x18 }
-  - { offsetInCU: 0x73B, offset: 0x73B, size: 0x8, addend: 0x0, symName: _open_TCP.cold.4, symObjAddr: 0x38C, symBinAddr: 0x100003D6C, symSize: 0x18 }
-  - { offsetInCU: 0x752, offset: 0x752, size: 0x8, addend: 0x0, symName: _open_TCP.cold.5, symObjAddr: 0x3A4, symBinAddr: 0x100003D84, symSize: 0x18 }
-  - { offsetInCU: 0x769, offset: 0x769, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x2DC, symBinAddr: 0x100003CB4, symSize: 0x50 }
-  - { offsetInCU: 0x7AE, offset: 0x7AE, size: 0x8, addend: 0x0, symName: _OUTLINED_FUNCTION_0, symObjAddr: 0x3BC, symBinAddr: 0x100003D04, symSize: 0x8 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _extractName, symObjAddr: 0x0, symBinAddr: 0x10000377C, symSize: 0xA8 }
+  - { offsetInCU: 0xEE, offset: 0xEE, size: 0x8, addend: 0x0, symName: _extractName, symObjAddr: 0x0, symBinAddr: 0x10000377C, symSize: 0xA8 }
+  - { offsetInCU: 0x125, offset: 0x125, size: 0x8, addend: 0x0, symName: _getConLen, symObjAddr: 0xA8, symBinAddr: 0x100003824, symSize: 0x68 }
+  - { offsetInCU: 0x1EA, offset: 0x1EA, size: 0x8, addend: 0x0, symName: _open_TCP, symObjAddr: 0x110, symBinAddr: 0x10000388C, symSize: 0x350 }
+  - { offsetInCU: 0x7FC, offset: 0x7FC, size: 0x8, addend: 0x0, symName: _open_TCP.cold.1, symObjAddr: 0x4B0, symBinAddr: 0x100003C34, symSize: 0x24 }
+  - { offsetInCU: 0x813, offset: 0x813, size: 0x8, addend: 0x0, symName: _open_TCP.cold.2, symObjAddr: 0x4D4, symBinAddr: 0x100003C58, symSize: 0x24 }
+  - { offsetInCU: 0x82A, offset: 0x82A, size: 0x8, addend: 0x0, symName: _open_TCP.cold.3, symObjAddr: 0x4F8, symBinAddr: 0x100003C7C, symSize: 0x18 }
+  - { offsetInCU: 0x841, offset: 0x841, size: 0x8, addend: 0x0, symName: _open_TCP.cold.4, symObjAddr: 0x510, symBinAddr: 0x100003C94, symSize: 0x18 }
+  - { offsetInCU: 0x858, offset: 0x858, size: 0x8, addend: 0x0, symName: _open_TCP.cold.5, symObjAddr: 0x528, symBinAddr: 0x100003CAC, symSize: 0x18 }
+  - { offsetInCU: 0x86F, offset: 0x86F, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x460, symBinAddr: 0x100003BDC, symSize: 0x50 }
+  - { offsetInCU: 0x8B4, offset: 0x8B4, size: 0x8, addend: 0x0, symName: _OUTLINED_FUNCTION_0, symObjAddr: 0x540, symBinAddr: 0x100003C2C, symSize: 0x8 }
 ...

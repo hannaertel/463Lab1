@@ -43,6 +43,20 @@ void extractName(const char *filePath, char *fileName) {
 
 }
 
+//func to get the content length from the headers
+int getConLen(const char *headers) {
+    const char *conLenHead = strstr(headers, "Content-Length:");
+    if(conLenHead) {
+        int conLen;
+        sscanf(conLenHead, "Content-Length: %d", &conLen);
+        return conLen;
+    }
+    else {
+        fprintf(stdout, "Error: could not download the requested file(file length unknown)\n");
+        exit(1);
+    }
+}
+
 //function to open TCP socket following HTTP protocol
 void open_TCP(const char *hostName, const char *filePath) {
     int sockfd, numBytes;
@@ -100,20 +114,65 @@ void open_TCP(const char *hostName, const char *filePath) {
      
 
 
+    numBytes = recv(sockfd, buffer, sizeof(buffer) - 1, 0);
+
+    /* 
+     while ((numBytes = recv(sockfd, buffer, sizeof(buffer) - 1, 0)) > 0) {
+        buffer[numBytes] = '\0';  // Null-terminate the received data
+        fwrite(buffer, 1, numBytes, file);     // Print the HTTP response
+    } */
+   
+    if (numBytes < 0) {
+        perror("recv");
+        exit(1);
+    }
+
+    buffer[numBytes] = '\0';
+
+    //check if gets the OK code
+    sscanf(buffer, "%127[^\r\n]", responseStatus);
+    if(strstr(responseStatus, "200") == NULL) {
+        //print first line and exit
+        printf("%s\n", responseStatus);
+        close(sockfd);
+        exit(1);
+    }
+
+    //get content length
+    int conLen = getConLen(buffer);
+
     FILE *file = fopen(fileName, "w");
     if(file == NULL) {
         perror("Unable to open file");
         exit(1);
     }
 
-     while ((numBytes = recv(sockfd, buffer, sizeof(buffer) - 1, 0)) > 0) {
-        buffer[numBytes] = '\0';  // Null-terminate the received data
-        fwrite(buffer, 1, numBytes, file);     // Print the HTTP response
-    } 
-   
-    if (numBytes < 0) {
-        perror("recv");
+    //skip headers
+    char *body = strstr(buffer, "\r\n\r\n");
+    if(body) {
+        body = body + 4;
+    }
+    else {
+        body = NULL;
+        fprintf(stdout, "Error: Malformed HTTP response");
+        close(sockfd);
         exit(1);
+    }
+
+    int headerSize = body - buffer;
+    int bodySize = numBytes - headerSize;
+
+    fwrite(body, 1, bodySize, file);
+    int totalBytesRead = bodySize;
+
+    // Continue reading from the socket until all content has been received based on Content-Length
+    while (totalBytesRead < conLen && (numBytes = recv(sockfd, buffer, sizeof(buffer), 0)) > 0) {
+        fwrite(buffer, 1, numBytes, file);  // Write the received content to the file
+        totalBytesRead += numBytes;
+    }
+
+    if (totalBytesRead != conLen) {
+        fprintf(stderr, "Error: Incomplete file download.\n");
     }
 
     fclose(file);
