@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     http_client
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _open_TCP, symObjAddr: 0x0, symBinAddr: 0x100003C14, symSize: 0x1A4 }
+  - { offsetInCU: 0xEE, offset: 0xEE, size: 0x8, addend: 0x0, symName: _open_TCP, symObjAddr: 0x0, symBinAddr: 0x100003C14, symSize: 0x1A4 }
+  - { offsetInCU: 0x403, offset: 0x403, size: 0x8, addend: 0x0, symName: _open_TCP.cold.1, symObjAddr: 0x1F0, symBinAddr: 0x100003E0C, symSize: 0x18 }
+  - { offsetInCU: 0x41A, offset: 0x41A, size: 0x8, addend: 0x0, symName: _open_TCP.cold.2, symObjAddr: 0x208, symBinAddr: 0x100003E24, symSize: 0x18 }
+  - { offsetInCU: 0x431, offset: 0x431, size: 0x8, addend: 0x0, symName: _open_TCP.cold.3, symObjAddr: 0x220, symBinAddr: 0x100003E3C, symSize: 0x18 }
+  - { offsetInCU: 0x448, offset: 0x448, size: 0x8, addend: 0x0, symName: _open_TCP.cold.4, symObjAddr: 0x238, symBinAddr: 0x100003E54, symSize: 0x18 }
+  - { offsetInCU: 0x45F, offset: 0x45F, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x1A4, symBinAddr: 0x100003DB8, symSize: 0x4C }
+  - { offsetInCU: 0x4A4, offset: 0x4A4, size: 0x8, addend: 0x0, symName: _OUTLINED_FUNCTION_0, symObjAddr: 0x250, symBinAddr: 0x100003E04, symSize: 0x8 }
+...
