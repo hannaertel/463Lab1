@@ -20,14 +20,6 @@
 #define HTTPport 80
 
 void extractName(const char *filePath, char *fileName) {
-    //look for last occurence of / to get to name
-    /* 
-    const char *slash = strrchr(filePath, "/");
-
-    //check that slash isnt null and that it isnt empty behind the slash
-    if (slash && *(slash + 1)) {
-        strcpy(fileName, slash + 1);
-    } */
 
    char pathCopy[256];
    char *token;
@@ -60,7 +52,7 @@ int getConLen(const char *headers) {
 //function to open TCP socket following HTTP protocol
 void open_TCP(const char *hostName, const char *filePath) {
     int sockfd, numBytes;
-	struct sockaddr_in their_addr; /* client's address information */
+	struct sockaddr_in their_addr; 
 	struct hostent* he;
     char responseStatus[128];
     char request[1024];
@@ -116,7 +108,7 @@ void open_TCP(const char *hostName, const char *filePath) {
 
     numBytes = recv(sockfd, buffer, sizeof(buffer) - 1, 0);
 
-    /* 
+    /*  for testing 
      while ((numBytes = recv(sockfd, buffer, sizeof(buffer) - 1, 0)) > 0) {
         buffer[numBytes] = '\0';  // Null-terminate the received data
         fwrite(buffer, 1, numBytes, file);     // Print the HTTP response
@@ -165,9 +157,9 @@ void open_TCP(const char *hostName, const char *filePath) {
     fwrite(body, 1, bodySize, file);
     int totalBytesRead = bodySize;
 
-    // Continue reading from the socket until all content has been received based on Content-Length
+    // read until = content length
     while (totalBytesRead < conLen && (numBytes = recv(sockfd, buffer, sizeof(buffer), 0)) > 0) {
-        fwrite(buffer, 1, numBytes, file);  // Write the received content to the file
+        fwrite(buffer, 1, numBytes, file);  
         totalBytesRead += numBytes;
     }
 
@@ -176,40 +168,6 @@ void open_TCP(const char *hostName, const char *filePath) {
     }
 
     fclose(file);
-
-
-   /*
-    if((numBytes == recv(sockfd, buffer, sizeof(buffer) - 1, 0)) <= 0) {
-        printf("numBytes: %d", numBytes);
-        perror("recv");
-        exit(1);
-    } */
-    /*
-    printf("got buffeer");
-
-    buffer[numBytes] = '\0';
-    //get first line
-    sscanf(buffer, "%127[^r\n]", responseStatus);
-
-    printf("after sscanf");
-
-    //make sure 200 code is there
-    
-    if(strstr(responseStatus, "200 OK") == NULL) {
-        //print first line and exit
-        printf("%s\n", responseStatus);
-        close(sockfd);
-        return;
-    }
-    printf("200 OK worked"); */
-
-    /*get file name from file path
-    extractName(filePath, fileName);
-
-    printf("File name: %s\n", fileName);
-
-    */
-
 
     close(sockfd);  
 
